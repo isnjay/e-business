@@ -418,7 +418,7 @@ export default {
     color:#fff;
     font-weight: 200;
     overflow: hidden;
-    background-color: rgba(7,17,27,0.5);
+    background-color: 	#00B2EE;
 }
 .contentWrapper {
     position: relative;
