@@ -1,17 +1,19 @@
 <template>
+<div>
   <div class="goods">
     <!-- 商家模块头部 组件 -->
     <div class="sellerHeader">
-        <!-- 主要内容：左侧头像、右侧描述 -->
-        <div class="contentWrapper"> 
+        <!-- 主要内容： -->
+        <!--  商城顶部  -->
+        <div class="mallBox">
+          <a href="#" class="login">登录</a>
             <div class="sellerLogo">  
-                <img src="/static/img/logo.jpg"/>             
+                <img src="static/img/timg.jpg"/>             
             </div>
             <div class="contents">
-                <h3 id="shopName">深圳麦当劳红荔西路餐厅</h3>
-                <span>欢迎光临，很高兴为你服务~</span>
+                <h3 id="shopName">小谷围幸运商城</h3><br/><br/>
+               
 
-                <!-- 评价 -->
                 <div class="supports">
                   <li v-for="words in evaluate">
                     <span class="text">{{ words.word }}</span>
@@ -19,21 +21,26 @@
                 </div>
             </div>
             
+
+
+
         </div>
+        
+        
     </div>
-    <!-- 公告 -->
+    <!-- 公告 
     <div class="notice">
         <div class="bulletinWrapper" @click="detailShow = true">
             <span class="brand"><i class="icon iconfont icon-zhekouqia"></i></span>
             <span class="text">折扣商品0.85折起</span>
             <span class="selection"><i class="icon iconfont icon-xiangxiazhankai"></i></span>
         </div>
-
+                              -->
         <!-- 背景 -->
         <div class="background">       
         </div>
 
-        <!-- 浮层详情 -->
+        <!-- 浮层详情 
         <transition name="fade">
             <div class="detail" v-show="detailShow">
                 <div class="detailWrapper clearfix">
@@ -68,7 +75,7 @@
                     <i class="icon iconfont icon-guanbi"></i>
                 </div>
             </div>
-        </transition>
+        </transition>               -->
 
         <!-- 返回按钮 -->
         <div class="back" @click="back">
@@ -79,7 +86,7 @@
         
     <div class="tab">
         <div class="tabItem" :class="{'tabline': tabActive === 1}" @click="tabActive = 1">
-            <router-link to=''>点餐</router-link>
+            <router-link to=''>商品</router-link>
         </div>
         <div class="tabItem" :class="{'tabline': tabActive === 2}" @click="tabActive = 2">
             <router-link to='#'>评价</router-link>
@@ -100,7 +107,7 @@
             <ul class="foodul">
                 <li class="food" v-for="foodname in renderFoodDetail">
                     <div class="picture">
-                        <img src=''>
+                        <img src='static/img/timg.jpg'>
                     </div>
                     <div class="foodcontent">
                         <h2 class="foodname">{{ foodname.c_name }}</h2>                            
@@ -196,7 +203,8 @@
     <!-- <transition name="fade">
         <div class="paymentBackground" @click="hideList" v-show="paymentshow"></div>
     </transition> -->
-  </div>
+ </div>
+</div>
 </template>
 <script>
 // import { MessageBox } from 'mint-ui';
@@ -213,11 +221,11 @@ export default {
             ratingline: false,
             shopline: false,
             evaluate: [{
-                word: '"服务好"'
+                word: '"价格低"'
             }, {
                 word: '"质量好"'
             }, {
-                word: '"包装好"'
+                word: '"服务棒"'
             }],
             discounts: [{
                 img: 'icon iconfont icon-zhekouqia',
@@ -418,7 +426,28 @@ export default {
     color:#fff;
     font-weight: 200;
     overflow: hidden;
-    background-color: 	#00B2EE;
+    background-color:	#00B2EE;
+}
+.mallBox{
+    height: 100px;
+    background: rgba(201,21,35,0);
+    min-width: 320px;
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+ .login{
+    position: absolute;
+    right: 10px;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    font-weight:700;
+    line-height: 40px;
+    text-align: center;
+    color: #222;
 }
 .contentWrapper {
     position: relative;
@@ -428,15 +457,16 @@ export default {
 .sellerLogo {
     position: relative;
     float: left;
-    width: 64px;
-    height: 64px;
+    width: 150px;
+    height: 100px;
     font-size: 14px;
     vertical-align: top;
+    
 }
 .sellerLogo img {
-    width: 64px;
-    height: 64px;
-    border-radius: 2px;
+    width: 150px;
+    height: 100px;
+    border-radius: 12px;
 }
 .brand i {
     color: rgb(200, 130, 214);  
@@ -448,11 +478,15 @@ export default {
 .contents {
     position: relative;
     float: right;
-    height: 64px;
-    width: 200px;
+    height: 60px;
+    width: 240px;
+    top:40px;
+    margin: 0;
 }
 .contents span {
-    font-size: 12px;
+    position: relative;
+    float: left;
+    font-size: 14px;
     margin-left: 10px;
 }
 .supports li {
