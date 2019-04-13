@@ -6,7 +6,10 @@
         <!-- 主要内容： -->
         <!--  商城顶部  -->
         <div class="mallBox">
-          <a href="#" class="login">登录</a>
+          <button type="button" class="login" onclick="Show();">登陆</button>
+          <button type="button" class="register" onclick="">注册</button>
+        
+          
             <div class="sellerLogo">  
                 <img src="static/img/timg.jpg"/>             
             </div>
@@ -36,7 +39,7 @@
             <span class="selection"><i class="icon iconfont icon-xiangxiazhankai"></i></span>
         </div>
                               -->
-        <!-- 背景 -->
+        <!-- 背景 
         <div class="background">       
         </div>
 
@@ -77,25 +80,50 @@
             </div>
         </transition>               -->
 
-        <!-- 返回按钮 -->
+        <!-- 返回按钮 
         <div class="back" @click="back">
             <i class="icon-arrow_lift"></i>
         </div>
     </div>
+ -->
+    
 
-        
+
+
+
     <div class="tab">
         <div class="tabItem" :class="{'tabline': tabActive === 1}" @click="tabActive = 1">
-            <router-link to=''>商品</router-link>
+            <router-link to=''>手机</router-link>
         </div>
         <div class="tabItem" :class="{'tabline': tabActive === 2}" @click="tabActive = 2">
-            <router-link to='#'>评价</router-link>
+            <router-link to='#'>数码相机</router-link>
         </div>
         <div class="tabItem" :class="{'tabline': tabActive === 3}" @click="tabActive = 3">
-            <router-link to='#'>商家</router-link>
+            <router-link to='#'>笔记本电脑</router-link>
         </div>
     </div>
+
+
+    <div id="modal" class="popup hide">
+           <h3>用户登陆</h3>
+ 
+        <div class="input_box">
+          <input id="uname" type="text" name="user" placeholder="请输入用户名">
+        </div>
+        <div class="input_box">
+          <input id="upass" type="password" name="psw" placeholder="请输入密码">
+        </div>
+        
+        <div class="input_box">
+           <button type="button" class="btn btn-primary" onclick="fnLogin();">登陆</button>    
+          <a href=""><input type="button" class="btn btn-info" name="regist" value="注册"></a>
+        </div>
+    </div>
+
+
+
     <div class="foodItem">
+        <!--
         <div class="leftNav">
             <ul>
                 <li class="meun" v-for="(name,index) in typeFood" @click="show(name, index)"  :class="{'active': isActive === index}">                   
@@ -103,6 +131,7 @@
                 </li>
             </ul>
         </div>
+        -->
         <div class="foodlist">
             <ul class="foodul">
                 <li class="food" v-for="foodname in renderFoodDetail">
@@ -266,23 +295,55 @@ export default {
         }
     },
     watch: {},
-    methods: {
+    methods: {     
+  fnLogin() {
+         var oUname = document.getElementById("uname")
+         var oUpass = document.getElementById("upass")
+         var oError = document.getElementById("error_box")
+         var isError = true;
+           if (oUname.value.length > 20 || oUname.value.length < 6) {
+              oError.innerHTML = "用户名请输入6-20位字符";
+              isError = false;
+            return;
+          }else if((oUname.value.charCodeAt(0)>=48) && (oUname.value.charCodeAt(0)<=57)){
+              oError.innerHTML = "首字符必须为字母";
+            return;
+          }else for(var i=0;i<oUname.value.charCodeAt(i);i++){
+          if((oUname.value.charCodeAt(i)<48)||(oUname.value.charCodeAt(i)>57) && (oUname.value.charCodeAt(i)<97)||(oUname.value.charCodeAt(i)>122)){
+          oError.innerHTML = "必须为字母跟数字组成";
+           return;
+    }
+ }
+         if (oUpass.value.length > 20 || oUpass.value.length < 6) {
+            oError.innerHTML = "密码请输入6-20位字符"
+           isError = false;
+         return;
+ }
+ window.alert("登录成功")
+},
+    Show() {
+           document.getElementById('modal').classList.remove('hide');
+},
+     Hide(){
+           document.getElementById('modal').classList.add('hide');
+},
         back () {
             this.$router.push({
                 path: '/index'
             });
         },
-        show (name, index) {
+
+       // show (name, index) {
             // this.foodDetail.map(val => {
             //     if (name.type_id === val.type_id) {
             //         console.log(this);
             //         this._foodDetail.push(val);
             //     }
             // });
-            const renderFoodDetail = this.foodDetail.filter(val => name.type_id === val.type_id);
-            this.renderFoodDetail = renderFoodDetail;
-            this.isActive = index;
-        },
+            //const renderFoodDetail = this.foodDetail.filter(val => name.type_id === val.type_id);
+            //this.renderFoodDetail = renderFoodDetail;
+           // this.isActive = index;
+        //},
         decrease (foodname, event) {
             if (this.menu[foodname.c_id] > 0) {
                 if (this.totalnum > 0) {
@@ -409,12 +470,15 @@ export default {
         // });
         // console.log(this.$route);
         // console.log(this);
-    }
+    },
+
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style  slot-scope>
+
 .goods {
     position: relative;
     height: 100%;
@@ -439,8 +503,25 @@ export default {
 }
 
  .login{
+    background-color: #00B2EE;
+    margin: 0;
+    border: 0;
     position: absolute;
     right: 10px;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    font-weight:700;
+    line-height: 40px;
+    text-align: center;
+    color: #222;
+}
+.register{
+    background-color: #00B2EE;
+    margin: 0;
+    border: 0;
+    position: absolute;
+    right: 50px;
     top: 0;
     width: 50px;
     height: 50px;
@@ -1077,4 +1158,61 @@ desc {
     opacity: 0;
     background: rgba(7, 17, 27, 0);
 }
+.hide{
+            display: none;
+        }
+
+.popup{
+ width: 320px;
+ height: 280px;
+ border: solid 1px #ddd;
+ background: #FFF;
+ position: absolute;
+ margin: auto;
+ left:10%;
+ text-align: center;
+}
+.btn-primary{
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    border-radius: 4px;
+
+}
+.btn-info{
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.box h3{
+ font-weight: normal;
+ color:#666;
+ font-size: 16px;
+ line-height: 40px;
+ overflow: hidden;
+ text-align: center;
+ border-bottom: solid 1px #ddd;
+ background: #f7f7f7;
+}
+.input_box{
+ width:350px;
+ padding-bottom: 15px;
+ margin: 0 auto;
+ overflow: hidden;
+ float: left;
+}
+
 </style>
