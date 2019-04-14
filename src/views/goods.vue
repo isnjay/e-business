@@ -1,13 +1,13 @@
 <template>
-<div>
   <div class="goods">
     <!-- 商家模块头部 组件 -->
     <div class="sellerHeader">
         <!-- 主要内容： -->
         <!--  商城顶部  -->
         <div class="mallBox">
-          <button type="button" class="login" onclick="Show();">登陆</button>
-          <button type="button" class="register" onclick="">注册</button>
+          <!-- <button type="button" class="login" @click="loginshow = true">登陆</button> -->
+          <span class="login" @click="loginshow = true"><i class="icon iconfont icon-icon_zhanghao"></i>登陆</span>
+          <!-- <button type="button" class="register"  @click="registershow = true">注册</button> -->
         
           
             <div class="sellerLogo">  
@@ -103,26 +103,28 @@
         </div>
     </div>
 
-
-    <div id="modal" class="popup hide">
-           <h3>用户登陆</h3>
- 
-        <div class="input_box">
-          <input id="uname" type="text" name="user" placeholder="请输入用户名">
+    <transition name="fade">
+        <div class="popshow" v-show="loginshow">
+            <div id="modal" class="popup">
+                <h3 class="logintitle">用户登陆</h3>
+                <div class="close">
+                    <i class="icon iconfont icon-guanbi" @click="loginshow = false"></i>
+                </div>        
+                <div class="input_box">
+                    <input id="uname" type="text" name="user" placeholder="请输入用户名">
+                    <input id="upass" type="password" name="psw" placeholder="请输入密码">
+                </div>                
+                <div class="input_box input3">
+                <button type="button" class="btn btn-primary" @click="Login">登陆</button>    
+                <a href=""><input type="button" class="btn btn-info" name="regist" value="注册"></a>
+                </div>
+            </div>
         </div>
-        <div class="input_box">
-          <input id="upass" type="password" name="psw" placeholder="请输入密码">
-        </div>
-        
-        <div class="input_box">
-           <button type="button" class="btn btn-primary" onclick="fnLogin();">登陆</button>    
-          <a href=""><input type="button" class="btn btn-info" name="regist" value="注册"></a>
-        </div>
-    </div>
+    </transition>
 
 
 
-    <div class="foodItem">
+    <div class="goodItem">
         <!--
         <div class="leftNav">
             <ul>
@@ -132,32 +134,93 @@
             </ul>
         </div>
         -->
-        <div class="foodlist">
-            <ul class="foodul">
-                <li class="food" v-for="foodname in renderFoodDetail">
+        <div class="goodlist">
+            <ul class="goodul">
+                <li class="good">
                     <div class="picture">
-                        <img src='static/img/timg.jpg'>
+                        <img src='static/img/101.jpg'>
                     </div>
-                    <div class="foodcontent">
-                        <h2 class="foodname">{{ foodname.c_name }}</h2>                            
-                        <div class="extra">
-                            <span class="sellcount">月售200份</span>
-                            <span class="rating">好评率93%</span>
+                    <div class="goodcontent">
+                        <h2 class="goodname">华为手机</h2>
+                        <span class="type">pro30</span>
+                        <div class="move">
+                            <span class="goodprice">￥3000</span>
+                            <span class="icon iconfont icon-gouwuche" @click="add"></span>
                         </div>
-                        <div class="piece">
-                            <span class="now">￥{{ foodname.piece }}</span>
-                            <div class="control">
-                                <transition name="move">
+                        <span class="more" @click="more">详情</span>        
+                        <div class="detail" v-show="detailShow">
+                            
+                        </div>
+                                <!-- <transition name="move">
                                     <div class="decrease1" @click.stop.prevent="decrease(foodname, $event)">
                                         <i class="icon iconfont icon-offline"></i>                                       
                                     </div>
-                                </transition> 
+                                </transition>
                                 <div class="num1" v-show="menu[foodname.c_id] > 0">{{ menu[foodname.c_id] }}</div>
                                 <div class="add1" @click.stop.prevent="add(foodname, $event)">
                                     <i class="icon iconfont icon-addition_fill"></i>
-                                </div>
-                            </div>
-                        </div>                        
+                                </div> -->
+                    </div> 
+                    <div class="extra">
+                        <span class="sellcount">月销量200</span>
+                    </div>
+                </li>
+                <li class="good">
+                    <div class="picture">
+                        <img src='static/img/101.jpg'>
+                    </div>
+                    <div class="goodcontent">
+                        <h2 class="goodname">华为手机</h2>
+                        <span class="type">pro30</span>
+                        <div class="move">
+                            <span class="goodprice">￥3000</span>
+                            <span class="icon iconfont icon-gouwuche" @click="add"></span>
+                        </div>
+                        <span class="more">详情</span>        
+                        <div class="detail" v-show="detailShow">
+                            
+                        </div>
+                                <!-- <transition name="move">
+                                    <div class="decrease1" @click.stop.prevent="decrease(foodname, $event)">
+                                        <i class="icon iconfont icon-offline"></i>                                       
+                                    </div>
+                                </transition>
+                                <div class="num1" v-show="menu[foodname.c_id] > 0">{{ menu[foodname.c_id] }}</div>
+                                <div class="add1" @click.stop.prevent="add(foodname, $event)">
+                                    <i class="icon iconfont icon-addition_fill"></i>
+                                </div> -->
+                    </div> 
+                    <div class="extra">
+                        <span class="sellcount">月销量200</span>
+                    </div>
+                </li>
+                <li class="good">
+                    <div class="picture">
+                        <img src='static/img/101.jpg'>
+                    </div>
+                    <div class="goodcontent">
+                        <h2 class="goodname">华为手机</h2>
+                        <span class="type">pro30</span>
+                        <div class="move">
+                            <span class="goodprice">￥3000</span>
+                            <span class="icon iconfont icon-gouwuche" @click="add"></span>
+                        </div>
+                        <span class="more">详情</span>        
+                        <div class="detail" v-show="detailShow">
+                            
+                        </div>
+                                <!-- <transition name="move">
+                                    <div class="decrease1" @click.stop.prevent="decrease(foodname, $event)">
+                                        <i class="icon iconfont icon-offline"></i>                                       
+                                    </div>
+                                </transition>
+                                <div class="num1" v-show="menu[foodname.c_id] > 0">{{ menu[foodname.c_id] }}</div>
+                                <div class="add1" @click.stop.prevent="add(foodname, $event)">
+                                    <i class="icon iconfont icon-addition_fill"></i>
+                                </div> -->
+                    </div> 
+                    <div class="extra">
+                        <span class="sellcount">月销量200</span>
                     </div>
                 </li>
             </ul>
@@ -233,7 +296,6 @@
         <div class="paymentBackground" @click="hideList" v-show="paymentshow"></div>
     </transition> -->
  </div>
-</div>
 </template>
 <script>
 // import { MessageBox } from 'mint-ui';
@@ -245,6 +307,8 @@ export default {
         return {
             logoimg: '',
             detailShow: false,
+            loginshow:false,
+            registershow:false,
             isActive: 0,
             orderline: true,
             ratingline: false,
@@ -270,7 +334,9 @@ export default {
             // all data
             foodDetail: [],
             // render data
-            renderFoodDetail: [],
+            renderGoodDetail: [
+
+            ],
             menu: {},
             select: [],
             listShow: false,
@@ -296,37 +362,34 @@ export default {
     },
     watch: {},
     methods: {     
-  fnLogin() {
-         var oUname = document.getElementById("uname")
-         var oUpass = document.getElementById("upass")
-         var oError = document.getElementById("error_box")
-         var isError = true;
-           if (oUname.value.length > 20 || oUname.value.length < 6) {
-              oError.innerHTML = "用户名请输入6-20位字符";
-              isError = false;
-            return;
-          }else if((oUname.value.charCodeAt(0)>=48) && (oUname.value.charCodeAt(0)<=57)){
-              oError.innerHTML = "首字符必须为字母";
-            return;
-          }else for(var i=0;i<oUname.value.charCodeAt(i);i++){
-          if((oUname.value.charCodeAt(i)<48)||(oUname.value.charCodeAt(i)>57) && (oUname.value.charCodeAt(i)<97)||(oUname.value.charCodeAt(i)>122)){
-          oError.innerHTML = "必须为字母跟数字组成";
-           return;
-    }
- }
-         if (oUpass.value.length > 20 || oUpass.value.length < 6) {
-            oError.innerHTML = "密码请输入6-20位字符"
-           isError = false;
-         return;
- }
- window.alert("登录成功")
-},
-    Show() {
-           document.getElementById('modal').classList.remove('hide');
-},
-     Hide(){
-           document.getElementById('modal').classList.add('hide');
-},
+        Login() {
+            // var oUname = document.getElementById("uname")
+            // var oUpass = document.getElementById("upass")
+            // var oError = document.getElementById("error_box")
+            // var isError = true;
+            // if (oUname.value.length > 20 || oUname.value.length < 6) {
+            //     oError.innerHTML = "用户名请输入6-20位字符";
+            //     isError = false;
+            //     return;
+            // }else if((oUname.value.charCodeAt(0)>=48) && (oUname.value.charCodeAt(0)<=57)){
+            //     oError.innerHTML = "首字符必须为字母";
+            //     return;
+            // }else for(var i=0;i<oUname.value.charCodeAt(i);i++){
+            //     if((oUname.value.charCodeAt(i)<48)||(oUname.value.charCodeAt(i)>57) && (oUname.value.charCodeAt(i)<97)||(oUname.value.charCodeAt(i)>122)){
+            //         oError.innerHTML = "必须为字母跟数字组成";
+            //         return;
+            //     }
+            // }
+            // if (oUpass.value.length > 20 || oUpass.value.length < 6) {
+            //     oError.innerHTML = "密码请输入6-20位字符"
+            // isError = false;
+            // return;
+            // },
+        // window.alert("登录成功")
+        },
+        more () {
+            this.detailShow = true;
+        },
         back () {
             this.$router.push({
                 path: '/index'
@@ -495,8 +558,8 @@ export default {
 .mallBox{
     height: 100px;
     background: rgba(201,21,35,0);
-    min-width: 320px;
-    max-width: 640px;
+    /* min-width: 320px;
+    max-width: 640px; */
     width: 100%;
     margin: 0 auto;
     position: relative;
@@ -507,14 +570,14 @@ export default {
     margin: 0;
     border: 0;
     position: absolute;
-    right: 10px;
+    right: 2%;
     top: 0;
     width: 50px;
     height: 50px;
     font-weight:700;
     line-height: 40px;
     text-align: center;
-    color: #222;
+    color: #fff;
 }
 .register{
     background-color: #00B2EE;
@@ -547,7 +610,7 @@ export default {
 .sellerLogo img {
     width: 150px;
     height: 100px;
-    border-radius: 12px;
+    /* border-radius: 12px; */
 }
 .brand i {
     color: rgb(200, 130, 214);  
@@ -557,11 +620,12 @@ export default {
     margin-right: 10px;
 }
 .contents {
-    position: relative;
-    float: right;
+    position: absolute;
+    /* float: right; */
     height: 60px;
-    width: 240px;
+    width: 51%;
     top:40px;
+    left: 40%;
     margin: 0;
 }
 .contents span {
@@ -598,7 +662,7 @@ export default {
     font-size: 14px;
     position: relative;
 }
-.detail {
+.popshow {
     top: 0;
     left: 0;
     right: 0;
@@ -705,10 +769,10 @@ a {
 hr {
     margin: 0 ;
 }
-.foodItem{
+.goodItem{
     display: flex;
     position: absolute;
-    top: 156px;
+    top: 136px;
     bottom: 46px;
     width: 100%;
     background-color: #fff;
@@ -742,14 +806,17 @@ hr {
 .active {
     background-color: white;
 }
-.foodlist{
+.goodlist{
     flex: 1;
 }
-.foodul {
+.goodul {
     margin: 0;
     padding: 0;
     overflow: scroll;
     height:100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;   
 }
 .foodtitle {
     list-style-type: none;
@@ -766,11 +833,14 @@ hr {
     color: rgb(147, 153, 159);
     background-color: #f3f5f7;
 }
-.food{
+.good{
     position: relative;
+    height: 125px;
     display: flex;
-    margin: 18px;
-    padding-bottom: 18px;
+    margin: 15px;
+    width: 167px;
+    flex:1;
+    /* padding-bottom: 18px; */
 }
 .picture{
     flex: 0 0 57px;
@@ -779,21 +849,47 @@ hr {
     margin-right: 10px;
 }
 .picture img {
-    width: 57px;
-    height: 57px;
+    width: 100px;
+    height: 100px;
 }
-.foodcontent {
+.goodcontent {
     flex: 1;
+    margin: 0px 0 0 30px;
 }
-.foodname {
+.goodname {
     font-size: 14px;
-    margin: 2px 0 8px 0;
+    margin: 8px 0 8px 2px;
     height: 14px;
     line-height: 14px;
     color: rgb(7, 17, 27);
 }
+.type {
+    font-size: 12px;
+    color: #333;
+    margin-left: 2px;
+}
+.move {
+    margin: 24px 0 5px 0;
+}
+.icon-gouwuche {
+    margin-left: 10px;
+}
+.goodprice {
+    font-size: 12px;
+    color: red;
+}
+.more {
+    position: absolute;
+    bottom: 4px;
+    margin-left: 46px;
+    line-height: 12px;
+    font-size: 12px;
+    color: rgb(147, 153, 159);
+}
 .extra {
-    margin-bottom: 8px;
+    position: absolute;
+    bottom: 0;
+    left:46px;
     line-height: 12px;
     font-size: 0;
     color: rgb(147, 153, 159);
@@ -1159,18 +1255,40 @@ desc {
     background: rgba(7, 17, 27, 0);
 }
 .hide{
-            display: none;
-        }
+    display: none;
+}
 
 .popup{
- width: 320px;
- height: 280px;
- border: solid 1px #ddd;
- background: #FFF;
- position: absolute;
- margin: auto;
- left:10%;
- text-align: center;
+    width: 320px;
+    height: 200px;
+    border: solid 1px #ddd;
+    background: #FFF;
+    position: absolute;
+    margin: auto;
+    left: 10%;
+    text-align: center;
+    border-radius: 5%;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    z-index: 1;
+}
+.logintitle {
+    color: #000;
+}
+.close {
+    position: absolute;
+    right: 10%;
+    top: 5%;
+    width: 10px;
+    height: 10px;
+}
+.icon-guanbi {
+    width: 30px;
+    height: 30px;
+    font-size: 27px;
+    color: #000;
 }
 .btn-primary{
     color: #fff;
@@ -1183,7 +1301,7 @@ desc {
     vertical-align: middle;
     border: 1px solid transparent;
     border-radius: 4px;
-
+    margin-right: 27px;    
 }
 .btn-info{
     color: #fff;
@@ -1208,11 +1326,24 @@ desc {
  background: #f7f7f7;
 }
 .input_box{
- width:350px;
- padding-bottom: 15px;
- margin: 0 auto;
- overflow: hidden;
- float: left;
+    width: 320px;
+    height: 90px;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+    float: left;
 }
-
+input:focus {
+    outline: none;
+}
+#uname, #upass {   
+    position: relative;
+    width: 194px;
+    height: 32px;
+    border: 1px solid;
+    margin-bottom: 9px;
+}
+.input3 {
+    margin-top: 4px;
+}
 </style>
