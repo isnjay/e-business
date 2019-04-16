@@ -147,10 +147,88 @@
                             <span class="goodprice">￥3000</span>
                             <span class="icon iconfont icon-gouwuche" @click="add"></span>
                         </div>
-                        <span class="more" @click="more">详情</span>        
-                        <div class="detail" v-show="detailShow">
-                            
+                        <span class="more"  @click="detailFirstShow=true">详情</span>    
+                    </div> 
+        <transition name="fade">
+            <div class="detail" v-show="detailFirstShow">                 
+                    <div class="detail-main">
+                        <div class="detail-close" @click="detailFirstShow = false">
+                            <i class="icon iconfont icon-guanbi"></i>
+                        </div> 
+                        <div class="title">
+                         <h2 class="goodname">华为手机</h2>
                         </div>
+                        <div class="type">
+                        <span class="type">pro30</span>
+                        </div>                       
+                             <img class="detail-img" src='static/img/101.jpg'>
+                             <span class="goodprice">￥3000</span>
+                        <div class="introduce">   
+                           <span class="introduce">2000万AI双摄 6GB+128GB 幻夜黑 移动联通电信4G全面屏手机 双卡双待</span>
+                        </div>
+                        <div class="size"><span>6.1英寸</span></div>
+                        <div class="evaluate"><span>1万+评价</span></div>
+                    </div>               
+            </div>
+        </transition>             
+
+        <!-- 返回按钮 
+        <div class="back" @click="back">
+            <i class="icon-arrow_lift"></i>
+        </div>
+    -->
+       
+
+     
+                                <!-- <transition name="move">
+                                    <div class="decrease1" @click.stop.prevent="decrease(foodname, $event)">
+                                        <i class="icon iconfont icon-offline"></i>                                       
+                                    </div>
+                                </transition>
+                                <div class="num1" v-show="menu[foodname.c_id] > 0">{{ menu[foodname.c_id] }}</div>
+                                <div class="add1" @click.stop.prevent="add(foodname, $event)">
+                                    <i class="icon iconfont icon-addition_fill"></i>
+                                </div> -->
+   
+                    <div class="extra">
+                        <span class="sellcount">月销量200</span>
+                    </div>
+                </li>
+                <li class="good">
+                    <div class="picture">
+                        <img src='static/img/101.jpg'>
+                    </div>
+                    <div class="goodcontent">
+                        <h2 class="goodname">华为手机</h2>
+                        <span class="type">pro30</span>
+                        <div class="move">
+                            <span class="goodprice">￥3000</span>
+                            <span class="icon iconfont icon-gouwuche" @click="add"></span>
+                        </div>
+                        <span class="more" @click="detailFirstShow=true">详情</span>     
+        <!-- <transition name="fade">
+            <div class="detail" v-show="detailSecondShow">                 
+                    <div class="detail-main">
+                        <div class="detail-close" @click="detailSecondShow = false">
+                            <i class="icon iconfont icon-guanbi"></i>
+                        </div> 
+                        <div class="title">
+                         <h2 class="goodname">华为手机</h2>
+                        </div>
+                        <div class="type">
+                        <span class="type">pro30</span>
+                        </div>                       
+                             <img class="detail-img" src='static/img/101.jpg'>
+                             <span class="goodprice">￥3000</span>
+                        <div class="introduce">   
+                           <span class="introduce">2000万AI双摄 6GB+128GB 幻夜黑 移动联通电信4G全面屏手机 双卡双待</span>
+                        </div>
+                        <div class="size"><span>6.1英寸</span></div>
+                        <div class="evaluate"><span>1万+评价</span></div>
+                    </div>               
+            </div>
+        </transition>                
+                       
                                 <!-- <transition name="move">
                                     <div class="decrease1" @click.stop.prevent="decrease(foodname, $event)">
                                         <i class="icon iconfont icon-offline"></i>                                       
@@ -176,39 +254,30 @@
                             <span class="goodprice">￥3000</span>
                             <span class="icon iconfont icon-gouwuche" @click="add"></span>
                         </div>
-                        <span class="more">详情</span>        
-                        <div class="detail" v-show="detailShow">
-                            
+                        <span class="more" @click="detailFirstShow=true">详情</span>
+               <!--   <transition name="fade">
+            <div class="detail" v-show="detailThirdShow">                 
+                    <div class="detail-main">
+                        <div class="detail-close" @click="detailThirdShow = false">
+                            <i class="icon iconfont icon-guanbi"></i>
+                        </div> 
+                        <div class="title">
+                         <h2 class="goodname">华为手机</h2>
                         </div>
-                                <!-- <transition name="move">
-                                    <div class="decrease1" @click.stop.prevent="decrease(foodname, $event)">
-                                        <i class="icon iconfont icon-offline"></i>                                       
-                                    </div>
-                                </transition>
-                                <div class="num1" v-show="menu[foodname.c_id] > 0">{{ menu[foodname.c_id] }}</div>
-                                <div class="add1" @click.stop.prevent="add(foodname, $event)">
-                                    <i class="icon iconfont icon-addition_fill"></i>
-                                </div> -->
-                    </div> 
-                    <div class="extra">
-                        <span class="sellcount">月销量200</span>
-                    </div>
-                </li>
-                <li class="good">
-                    <div class="picture">
-                        <img src='static/img/101.jpg'>
-                    </div>
-                    <div class="goodcontent">
-                        <h2 class="goodname">华为手机</h2>
+                        <div class="type">
                         <span class="type">pro30</span>
-                        <div class="move">
-                            <span class="goodprice">￥3000</span>
-                            <span class="icon iconfont icon-gouwuche" @click="add"></span>
+                        </div>                       
+                             <img class="detail-img" src='static/img/101.jpg'>
+                             <span class="goodprice">￥3000</span>
+                        <div class="introduce">   
+                           <span class="introduce">2000万AI双摄 6GB+128GB 幻夜黑 移动联通电信4G全面屏手机 双卡双待</span>
                         </div>
-                        <span class="more">详情</span>        
-                        <div class="detail" v-show="detailShow">
-                            
-                        </div>
+                        <div class="size"><span>6.1英寸</span></div>
+                        <div class="evaluate"><span>1万+评价</span></div>
+                    </div>               
+            </div>
+        </transition>                               
+                        
                                 <!-- <transition name="move">
                                     <div class="decrease1" @click.stop.prevent="decrease(foodname, $event)">
                                         <i class="icon iconfont icon-offline"></i>                                       
@@ -306,7 +375,9 @@ export default {
     data () {
         return {
             logoimg: '',
-            detailShow: false,
+            detailFirstShow: false,
+            detailSecondShow: false,
+            detailThirdShow: false,
             loginshow:false,
             registershow:false,
             isActive: 0,
@@ -673,6 +744,7 @@ export default {
     background-color: rgba(7,17,27,.8);
     color: white;
 }
+/*
 .detail-main {
     text-align: center;
     padding-top: 64px;
@@ -734,7 +806,7 @@ export default {
 }
 .detail-close {
     text-align: center;
-}
+}*/
 .content brand {
     width: 30px;
     height: 18px;
@@ -1257,7 +1329,7 @@ desc {
 .hide{
     display: none;
 }
-
+/*登录弹出框*/
 .popup{
     width: 320px;
     height: 200px;
@@ -1345,5 +1417,66 @@ input:focus {
 }
 .input3 {
     margin-top: 4px;
+}
+/*商品详请框*/
+.detail{
+    width: 300px;
+    height: 400px;
+    border: solid 1px #ddd;
+    background: #FFF;
+    position: absolute;
+    margin: auto;
+    text-align: center;
+    left: 40px;
+    top: 40px;
+    z-index: 1;
+}
+.detail-main{
+    width: 300px;
+    height: 400px;
+    text-align: center;
+   
+}
+.detail-close{
+    width: 100%;
+    position: relative;
+    float: left;
+}
+.icon-guanbi{
+    position: relative;
+    float: right;
+}
+.title{
+    width: 100%;
+    position: relative;
+    float: left;
+}
+.type{
+    width: 100%;
+    position: relative;
+    float: left;
+}
+.detail-img{
+    width: 200px;
+    height: 240px;
+}
+.introduce{
+    width: 100%;
+    position: relative;
+    float: left;
+    text-align: center;
+    font-size: 14px;
+}
+.size{
+    position: relative;
+    float: left;
+    font-size: 14px;
+    color: #999;
+}
+.evaluate{
+    position: relative;
+    float: right;
+    font-size: 14px;
+    color: #2272c8;
 }
 </style>
